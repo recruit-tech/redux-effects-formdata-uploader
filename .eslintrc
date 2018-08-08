@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": ["eslint-config-airbnb", "prettier"],
 
   "parserOptions": {
     "ecmaVersion": 6,
@@ -71,6 +71,10 @@
     "dependencies/no-unresolved": "error",
 
     // coding styles
-    "max-len": ["error", 100]
+    "max-len": ["error", 100],
+
+    "import/extensions": "off",
+    "prefer-destructuring": "off",
+    "no-shadow": "off"
   }
 }

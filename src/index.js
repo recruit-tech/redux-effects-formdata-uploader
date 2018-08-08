@@ -18,7 +18,7 @@ export function upload({
   params,
   config,
   cancelSource,
-  onUploadProgress,
+  onUploadProgress
 }) {
   return {
     type: UPLOAD,
@@ -29,8 +29,8 @@ export function upload({
       params,
       config,
       cancelSource,
-      onUploadProgress,
-    },
+      onUploadProgress
+    }
   };
 }
 
@@ -38,14 +38,14 @@ export function upload({
  * uploader middleware
  */
 export default function uploadMiddleware(config) {
-  const client = axios.create(config)
-  return ({ dispatch }) => (next) => (action) => {
+  const client = axios.create(config);
+  return ({ dispatch }) => next => action => {
     const { type, payload } = action;
     if (!type.startsWith(UPLOADER)) {
       return next(action);
     }
 
-    return _upload(payload, client, config.csrfToken)
+    return _upload(payload, client, config.csrfToken);
   };
 }
 
@@ -57,7 +57,11 @@ function _upload(payload, axios, csrfToken) {
 
   const headers = formData.getHeaders && formData.getHeaders();
 
-  const cancelToken = payload.cancelSource && payload.cancelSource.token
-  const onUploadProgress = payload.onUploadProgress
-  return axios.post(`${payload.path}?${qs}`, formData, { cancelToken, headers, onUploadProgress });
+  const cancelToken = payload.cancelSource && payload.cancelSource.token;
+  const onUploadProgress = payload.onUploadProgress;
+  return axios.post(`${payload.path}?${qs}`, formData, {
+    cancelToken,
+    headers,
+    onUploadProgress
+  });
 }
