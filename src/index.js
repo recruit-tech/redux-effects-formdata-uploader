@@ -17,8 +17,8 @@ export function upload({
   file,
   params,
   config,
-  cancelSource,
-  onUploadProgress
+  cancelAction,
+  uploadProgressAction,
 }) {
   return {
     type: UPLOAD,
@@ -28,9 +28,9 @@ export function upload({
       file,
       params,
       config,
-      cancelSource,
-      onUploadProgress
-    }
+      cancelAction,
+      uploadProgressAction,
+    },
   };
 }
 
@@ -39,17 +39,17 @@ export function upload({
  */
 export default function uploadMiddleware(config) {
   const client = axios.create(config);
-  return ({ dispatch }) => next => action => {
+  return ({ dispatch }) => (next) => (action) => {
     const { type, payload } = action;
     if (!type.startsWith(UPLOADER)) {
       return next(action);
     }
 
-    return _upload(payload, client, config.csrfToken);
+    return uploadSingleFile(dispatch, payload, client, config.csrfToken);
   };
 }
 
-function _upload(payload, axios, csrfToken) {
+function uploadSingleFile(dispatch, payload, client, csrfToken) {
   const formData = new FormData();
   formData.append(payload.name, payload.file);
 
@@ -57,11 +57,16 @@ function _upload(payload, axios, csrfToken) {
 
   const headers = formData.getHeaders && formData.getHeaders();
 
-  const cancelToken = payload.cancelSource && payload.cancelSource.token;
-  const onUploadProgress = payload.onUploadProgress;
-  return axios.post(`${payload.path}?${qs}`, formData, {
+  const cancelSource = axios.CancelToken.source();
+  payload.cancelAction && dispatch(payload.cancelAction(cancelSource));
+
+  const cancelToken = cancelSource.token;
+  const onUploadProgress = (evt) => {
+    payload.uploadProgressAction && dispatch(payload.uploadProgressAction(evt));
+  };
+  return client.post(`${payload.path}?${qs}`, formData, {
     cancelToken,
     headers,
-    onUploadProgress
+    onUploadProgress,
   });
 }

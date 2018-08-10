@@ -8,7 +8,7 @@ import uploadMiddleware, { upload } from "../index.js";
 
 const readFile = promisify(fs.readFile);
 
-test("upload single file", done => {
+test("upload single file", (done) => {
   const config = { fieldName: "file" };
   const server = serverFactory(config);
   server.listen(0);
@@ -19,7 +19,7 @@ test("upload single file", done => {
       {},
       applyMiddleware(
         uploadMiddleware({
-          baseURL: `http://localhost:${port}`
+          baseURL: `http://localhost:${port}`,
         })
       )
     );
@@ -29,7 +29,7 @@ test("upload single file", done => {
 
     const res = await store
       .dispatch(upload({ path: "/file", name: config.fieldName, file }))
-      .catch(e => {
+      .catch((e) => {
         assert.fail(e);
       });
 
