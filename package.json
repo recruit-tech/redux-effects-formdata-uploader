@@ -1,6 +1,6 @@
 {
   "name": "redux-effects-formdata-uploader",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Redux Effects File Uploader using FormData",
   "main": "lib/index.js",
   "repository": {
