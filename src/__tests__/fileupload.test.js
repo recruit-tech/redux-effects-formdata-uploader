@@ -12,7 +12,7 @@ test("upload single file", done => {
   const config = { fieldName: "file" };
   const server = serverFactory(config);
   server.listen(0);
-  server.on("listening", async () => {
+  server.on("listening", () => {
     const port = server.address().port;
     const store = createStore(
       () => null,
@@ -27,18 +27,24 @@ test("upload single file", done => {
     const filepath = path.resolve(__dirname, "./fixtures/foo.txt");
     const file = fs.createReadStream(filepath);
 
-    const res = await store
+    store
       .dispatch(upload({ path: "/file", name: config.fieldName, file }))
+      .then(res => {
+        assert.strictEqual(res.status, 200);
+        assert(res.data);
+        return res;
+      })
+      .then(res => {
+        Promise.all([readFile(res.data.path), readFile(filepath)]).then(
+          ([actual, expected]) => {
+            assert.strictEqual(actual.toString(), expected.toString());
+            server.close();
+          },
+        );
+      })
       .catch(e => {
         assert.fail(e);
       });
-
-    assert.strictEqual(res.status, 200);
-    assert(res.data);
-    const actual = await readFile(res.data.path);
-    const expected = await readFile(filepath);
-    assert.strictEqual(actual.toString(), expected.toString());
-    server.close();
   });
   server.on("close", done);
 });

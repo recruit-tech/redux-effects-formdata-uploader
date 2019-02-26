@@ -10,7 +10,7 @@ import uploadMiddleware, { upload } from "../index.js";
 test("cancel file upload", done => {
   const server = serverFactory({ fieldName: "file" });
   server.listen(0);
-  server.on("listening", async () => {
+  server.on("listening", () => {
     const port = server.address().port;
     const store = createStore(
       () => null,
