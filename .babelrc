@@ -2,8 +2,8 @@
   "presets": [
     ["@babel/preset-env", {
       "targets": {
-        "browsers": ["ie >= 11", "safari >= 8"],
-      }
+        "browsers": ["ie >= 11", "safari >= 8"]
+      },
     }]
   ],
   "plugins": ["@babel/plugin-proposal-object-rest-spread"]

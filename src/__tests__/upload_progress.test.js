@@ -9,7 +9,7 @@ import uploadMiddleware, { upload } from "../index.js";
 test("show progress file upload", done => {
   const server = serverFactory({ fieldName: "file" });
   server.listen(0);
-  server.on("listening", async () => {
+  server.on("listening", () => {
     const port = server.address().port;
     const store = createStore(
       () => null,
@@ -34,8 +34,7 @@ test("show progress file upload", done => {
       uploadProgressAction,
     });
     assert(up.payload.uploadProgressAction);
-    await store.dispatch(up);
-    server.close();
+    store.dispatch(up).then(() => server.close());
   });
   server.on("close", done);
 });
