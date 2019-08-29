@@ -41,7 +41,7 @@
     "@babel/register": "7.5.5",
     "babel-eslint": "8.2.6",
     "eslint": "5.16.0",
-    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-airbnb": "17.1.1",
     "eslint-config-prettier": "2.10.0",
     "eslint-plugin-dependencies": "2.4.0",
     "eslint-plugin-import": "2.16.0",
