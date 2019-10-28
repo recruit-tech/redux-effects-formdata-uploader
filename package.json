@@ -22,7 +22,8 @@
   "homepage": "https://github.com/recruit-tech/redux-effects-formdata-uploader#readme",
   "files": [
     "lib",
-    "src"
+    "src",
+    "index.d.ts"
   ],
   "scripts": {
     "build": "babel src --out-dir lib --ignore src/__tests__",
