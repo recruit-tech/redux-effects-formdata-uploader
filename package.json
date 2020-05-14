@@ -43,7 +43,7 @@
     "@babel/register": "7.7.0",
     "babel-eslint": "10.0.3",
     "eslint": "6.8.0",
-    "eslint-config-airbnb": "17.1.1",
+    "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "2.10.0",
     "eslint-plugin-dependencies": "2.4.0",
     "eslint-plugin-import": "2.18.2",
