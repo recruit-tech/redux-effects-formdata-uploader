@@ -6,7 +6,7 @@ import assert from "assert";
 import serverFactory from "./server.js";
 import uploadMiddleware, { upload } from "../index.js";
 
-test("show progress file upload", done => {
+test("show progress file upload", (done) => {
   const server = serverFactory({ fieldName: "file" });
   server.listen(0);
   server.on("listening", () => {
@@ -24,7 +24,7 @@ test("show progress file upload", done => {
     const file = fs.createReadStream(
       path.resolve(__dirname, "./fixtures/foo.txt"),
     );
-    const uploadProgressAction = createAction("on_upload_progress", evt => {
+    const uploadProgressAction = createAction("on_upload_progress", (evt) => {
       // TODO: browser check
     });
     const up = upload({

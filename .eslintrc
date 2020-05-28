@@ -15,11 +15,6 @@
     "es6": true
   },
 
-  "plugins": [
-    "import",
-    "dependencies"
-  ],
-
   "rules": {
     //Possible Errors
     "no-console": "error",
@@ -64,11 +59,6 @@
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
     "prefer-spread": "error",
     "prefer-template": "off",
-
-    // dependencies
-    "dependencies/case-sensitive": "error",
-    "dependencies/no-cycles": "error",
-    "dependencies/no-unresolved": "error",
 
     // coding styles
     "max-len": ["error", 100],

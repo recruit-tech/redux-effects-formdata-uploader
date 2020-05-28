@@ -39,7 +39,7 @@ export function upload({
  */
 export default function uploadMiddleware(config) {
   const client = axios.create(config);
-  return ({ dispatch }) => next => action => {
+  return ({ dispatch }) => (next) => (action) => {
     const { type, payload } = action;
     if (!type.startsWith(UPLOADER)) {
       return next(action);
@@ -61,7 +61,7 @@ function uploadSingleFile(dispatch, payload, client, csrfToken) {
   payload.cancelAction && dispatch(payload.cancelAction(cancelSource));
 
   const cancelToken = cancelSource.token;
-  const onUploadProgress = evt => {
+  const onUploadProgress = (evt) => {
     payload.uploadProgressAction && dispatch(payload.uploadProgressAction(evt));
   };
   return client.post(`${payload.path}?${qs}`, formData, {
