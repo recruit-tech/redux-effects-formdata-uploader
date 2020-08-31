@@ -42,7 +42,7 @@
     "@babel/preset-env": "7.11.0",
     "@babel/register": "7.10.5",
     "babel-eslint": "10.1.0",
-    "eslint": "7.7.0",
+    "eslint": "7.8.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-dependencies": "2.4.0",
