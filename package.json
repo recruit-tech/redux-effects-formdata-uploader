@@ -35,12 +35,12 @@
     "version": "npm-run-all clean build"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.16",
-    "@babel/core": "7.14.2",
-    "@babel/plugin-proposal-object-rest-spread": "7.14.2",
+    "@babel/cli": "7.25.9",
+    "@babel/core": "7.25.9",
+    "@babel/plugin-proposal-object-rest-spread": "7.20.7",
     "@babel/plugin-syntax-object-rest-spread": "7.8.3",
-    "@babel/preset-env": "7.14.2",
-    "@babel/register": "7.13.16",
+    "@babel/preset-env": "7.25.9",
+    "@babel/register": "7.25.9",
     "babel-eslint": "10.1.0",
     "eslint": "7.26.0",
     "eslint-config-airbnb": "18.2.1",
